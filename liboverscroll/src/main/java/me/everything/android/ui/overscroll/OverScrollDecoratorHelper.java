@@ -1,5 +1,6 @@
 package me.everything.android.ui.overscroll;
 
+import androidx.core.widget.NestedScrollView;
 import androidx.viewpager.widget.ViewPager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import android.widget.ScrollView;
 
 import me.everything.android.ui.overscroll.adapters.AbsListViewOverScrollDecorAdapter;
 import me.everything.android.ui.overscroll.adapters.HorizontalScrollViewOverScrollDecorAdapter;
+import me.everything.android.ui.overscroll.adapters.NestedScrollViewOverScrollDecorAdapter;
 import me.everything.android.ui.overscroll.adapters.RecyclerViewOverScrollDecorAdapter;
 import me.everything.android.ui.overscroll.adapters.ScrollViewOverScrollDecorAdapter;
 import me.everything.android.ui.overscroll.adapters.StaticOverScrollDecorAdapter;
@@ -59,6 +61,10 @@ public class OverScrollDecoratorHelper {
 
     public static IOverScrollDecor setUpOverScroll(HorizontalScrollView scrollView) {
         return new HorizontalOverScrollBounceEffectDecorator(new HorizontalScrollViewOverScrollDecorAdapter(scrollView));
+    }
+
+    public static IOverScrollDecor setUpOverScroll(NestedScrollView scrollView, boolean enableSwipeToRefresh) {
+        return new VerticalOverScrollBounceEffectDecorator(new NestedScrollViewOverScrollDecorAdapter(scrollView, enableSwipeToRefresh));
     }
 
     /**

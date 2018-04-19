@@ -1,9 +1,11 @@
 package me.everything.android.ui.overscroll;
 
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import me.everything.android.ui.overscroll.adapters.IOverScrollDecoratorAdapter;
+import me.everything.android.ui.overscroll.adapters.NestedScrollViewOverScrollDecorAdapter;
 
 /**
  * A concrete implementation of {@link OverScrollBounceEffectDecoratorBase} for a vertical orientation.
@@ -65,12 +67,13 @@ public class VerticalOverScrollBounceEffectDecorator extends OverScrollBounceEff
 
     /**
      * C'tor, creating the effect with explicit arguments.
-     * @param viewAdapter The view's encapsulation.
+     *
+     * @param viewAdapter       The view's encapsulation.
      * @param touchDragRatioFwd Ratio of touch distance to actual drag distance when in 'forward' direction.
      * @param touchDragRatioBck Ratio of touch distance to actual drag distance when in 'backward'
      *                          direction (opposite to initial one).
-     * @param decelerateFactor Deceleration factor used when decelerating the motion to create the
-     *                         bounce-back effect.
+     * @param decelerateFactor  Deceleration factor used when decelerating the motion to create the
+     *                          bounce-back effect.
      */
     public VerticalOverScrollBounceEffectDecorator(IOverScrollDecoratorAdapter viewAdapter,
                                                    float touchDragRatioFwd, float touchDragRatioBck, float decelerateFactor) {
@@ -94,6 +97,7 @@ public class VerticalOverScrollBounceEffectDecorator extends OverScrollBounceEff
 
     @Override
     protected void translateViewAndEvent(View view, float offset, MotionEvent event) {
+        //Log.e("Debugging", "offset: " + offset);
         view.setTranslationY(offset);
         event.offsetLocation(offset - event.getY(0), 0f);
     }
